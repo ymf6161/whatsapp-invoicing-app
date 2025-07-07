@@ -55,18 +55,24 @@ router.post('/signup', async (req, res) => {
 // Login endpoint
 router.post('/login', async (req, res) => {
   try {
+    console.log('Login attempt started for email:', req.body.email);
     const { email, password } = req.body;
 
+    console.log('Attempting Supabase auth sign in...');
     const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (authError) {
+      console.log('Supabase auth error:', authError);
       return res.status(400).json({ error: authError.message });
     }
 
+    console.log('Supabase auth successful, user ID:', authData.user.id);
+
     // Get user data from our users table
+    console.log('Fetching user data from users table...');
     const { data: userData, error: userError } = await supabase
       .from('users')
       .select('*')
@@ -74,8 +80,12 @@ router.post('/login', async (req, res) => {
       .single();
 
     if (userError) {
+      console.log('User data fetch error:', userError);
+      console.log('Error details:', JSON.stringify(userError, null, 2));
       return res.status(400).json({ error: userError.message });
     }
+
+    console.log('User data fetched successfully:', userData);
 
     res.json({
       message: 'Login successful',
@@ -87,6 +97,7 @@ router.post('/login', async (req, res) => {
       session: authData.session
     });
   } catch (error) {
+    console.log('Login catch error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
