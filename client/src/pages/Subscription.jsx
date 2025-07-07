@@ -36,7 +36,7 @@ const Subscription = () => {
       if (!token) return;
 
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/subscription/status`,
+        `${import.meta.env.VITE_API_URL}/api/subscription/status`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -54,7 +54,7 @@ const Subscription = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/subscription/create-checkout`,
+        `${import.meta.env.VITE_API_URL}/api/subscription/create-checkout`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -80,7 +80,7 @@ const Subscription = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/subscription/cancel`,
+        `${import.meta.env.VITE_API_URL}/api/subscription/cancel`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }

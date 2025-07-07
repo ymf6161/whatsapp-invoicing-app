@@ -32,7 +32,7 @@ const Dashboard = () => {
   const fetchInvoices = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/invoices`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/invoices`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setInvoices(response.data.invoices || []);

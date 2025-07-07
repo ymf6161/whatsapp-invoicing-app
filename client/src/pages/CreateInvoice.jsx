@@ -43,7 +43,7 @@ const CreateInvoice = () => {
       }
 
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/invoices/create`,
+        `${import.meta.env.VITE_API_URL}/api/invoices/create`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` }

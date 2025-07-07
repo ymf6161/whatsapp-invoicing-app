@@ -28,7 +28,7 @@ const SendWhatsAppModal = ({ isOpen, onClose, invoice, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/invoices/${invoice.id}/send-whatsapp`,
+        `${import.meta.env.VITE_API_URL}/api/invoices/${invoice.id}/send-whatsapp`,
         { phone_number: phoneNumber },
         {
           headers: { Authorization: `Bearer ${token}` }

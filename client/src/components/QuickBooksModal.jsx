@@ -28,7 +28,7 @@ const QuickBooksModal = ({ isOpen, onClose, invoice, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/quickbooks/status`,
+        `${import.meta.env.VITE_API_URL}/api/quickbooks/status`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -47,7 +47,7 @@ const QuickBooksModal = ({ isOpen, onClose, invoice, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/quickbooks/sync/${invoice.id}`,
+        `${import.meta.env.VITE_API_URL}/api/quickbooks/sync/${invoice.id}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
